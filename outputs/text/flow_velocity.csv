@@ -1,0 +1,6 @@
+Parameter,Value
+Pump Frequency [Hz],2.10
+Incoming Flow Velocity U∞ [m/s],0.03505
+Mean u-velocity (PIV) [m/s],0.02446
+Mean v-velocity (PIV) [m/s],0.00022
+Mean Velocity Magnitude (PIV) [m/s],0.02446

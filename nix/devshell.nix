@@ -1,8 +1,12 @@
-{ pkgs, perSystem, ... }:
+{
+    pkgs,
+    perSystem,
+    ...
+}:
 perSystem.devshell.mkShell {
-    name = "hw devshell";
+    name = "enae464-lab05 devshell";
     motd = ''
-        {141}📚 hw{reset} devshell
+        {141}📚 enae464-lab05{reset} devshell
         $(type -p menu &>/dev/null && menu)
     '';
 
@@ -91,19 +95,20 @@ perSystem.devshell.mkShell {
         # latex
         texlive.combined.scheme-full
         texlab
+        textidote
 
         # python
         (python3.withPackages (
             ps: with ps; [
                 # python packages here
+                pandas
                 matplotlib
                 numpy
                 scipy
                 cartopy
             ]
         ))
-
-        # font
-        pkgs.nerd-fonts.iosevka-term
+        uv
+        ty
     ];
 }

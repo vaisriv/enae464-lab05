@@ -1,8 +1,0 @@
-Parameter,Value
-Particle Density [kg/m³],950
-Particle Diameter [m],2.00e-05
-Water Dynamic Viscosity [kg/(m·s)],4.04e-04
-Particle Reaction Time τ_r [s],5.225523e-05
-Shedding Frequency [Hz],0.580
-Flow Time Scale τ_f [s],1.7254
-Stokes Number St_k [-],3.028540e-05

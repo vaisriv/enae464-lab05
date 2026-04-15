@@ -93,204 +93,127 @@ Mikołaj Kostrzewa \& Vai Srivastava
 
 \section{Abstract} \label{sec:abstract}
 
-This report presents an experimental investigation of vortex shedding downstream of a circular cylinder using Particle Imaging Velocimetry (PIV). The experiment was conducted in a water tunnel at a pump frequency of \SI{2.1}{\hertz}, corresponding to an incoming flow velocity of \SI{0.0351}{\meter\per\second} and a Reynolds number of approximately 1100. PIV measurements captured instantaneous velocity fields over a \SI{0.38}{\second} duration, revealing the characteristic Kármán vortex street pattern. From the Strouhal number of 0.21 for the experimental Reynolds number regime, the expected vortex shedding frequency was calculated to be \SI{0.58}{\hertz}. Transverse velocity fluctuations at the cylinder wake centerline were analyzed using sinusoidal curve fitting, yielding a measured dominant frequency of \SI{2.49}{\hertz}. The Stokes number for the \SI{20}{\micro\meter} polyamide seed particles was found to be \SI{3.03e-5}{}, confirming that particles faithfully follow the flow dynamics. The discrepancy between expected and measured frequencies suggests the presence of higher-order flow phenomena or measurement artifacts, which are discussed in detail.
+% FIXME: write abstract
+\lipsum[1]
 
 \section{Introduction} \label{sec:introduction}
 
-Particle Imaging Velocimetry (PIV) is a non-intrusive optical flow diagnostic technique widely used in experimental fluid mechanics to obtain instantaneous, spatially-resolved velocity fields. Unlike point-measurement techniques such as hot-wire anemometry or Laser Doppler Velocimetry (LDV), PIV provides full-field velocity information across a planar cross-section of the flow, making it particularly valuable for visualizing and quantifying complex flow structures such as vortices, separation zones, and turbulent eddies.
-
-The fundamental principle of PIV involves seeding the flow with tracer particles that are sufficiently small and neutrally-buoyant to faithfully follow fluid motion. A laser sheet illuminates a planar region of the seeded flow at two closely-spaced time intervals, and a high-resolution camera captures the scattered light from the particles at each instant. Cross-correlation algorithms applied to small interrogation windows within the image pairs yield displacement vector fields, which, when divided by the known time interval, provide velocity fields.
-
-In this experiment, PIV is applied to investigate the classic fluid mechanics phenomenon of vortex shedding from a circular cylinder in cross-flow. This configuration is of both fundamental and practical importance, as it represents a canonical bluff-body wake flow with applications ranging from heat exchanger tube arrays to structural vibrations induced by wind or water currents.
+% FIXME: introduce hypersonic flow in ludwieg tubes, shocks, and mach shedding
+\lipsum[1]
 
 \subsection{Theoretical Background} \label{sec:introduction/theory}
 
-When a circular cylinder is placed in a steady, uniform cross-flow at moderate Reynolds numbers (\(Re = \frac{U_\infty D}{\nu}\), where \(U_\infty\) is the free-stream velocity, \(D\) is the cylinder diameter, and \(\nu\) is the kinematic viscosity), the flow exhibits periodic vortex shedding downstream of the cylinder. This phenomenon, known as the Kármán vortex street, results from an instability in the separated shear layers on either side of the cylinder, causing alternating vortices to be shed into the wake.
-
-The dimensionless shedding frequency is characterized by the Strouhal number:
-\begin{equation}
-    St = \frac{f \cdot D}{U_\infty}
-\end{equation}
-where \(f\) is the vortex shedding frequency. For circular cylinders in the Reynolds number range \(10^2 < Re < 10^5\), the Strouhal number is approximately constant at \(St \approx 0.20\text{--}0.21\), a value well-established through extensive experimental and computational studies.
-
-The quality of PIV measurements depends critically on the fidelity with which seed particles follow the flow. This is quantified by the Stokes number:
-\begin{equation}
-    St_k = \frac{\tau_r}{\tau_f}
-\end{equation}
-where \(\tau_r = \frac{\rho_p D_p^2}{18\mu}\) is the particle response time (\(\rho_p\) is particle density, \(D_p\) is particle diameter, \(\mu\) is fluid dynamic viscosity), and \(\tau_f\) is the characteristic flow timescale. For accurate flow tracking, \(St_k \ll 1\) is required, typically \(St_k < 0.1\).
+% FIXME: describe theoretical background
+\lipsum[1]
 
 \subsection{Objectives} \label{sec:introduction/objectives}
 
+% FIXME: list experiment objectives
 The specific objectives of this experiment are:
 \begin{enumerate}
-    \item Measure the incoming water flow velocity and calculate the Reynolds number for flow over the circular cylinder
-    \item Determine the expected vortex shedding frequency using the Strouhal number correlation for the experimental Reynolds number
-    \item Calculate the Stokes number to assess the suitability of the seed particles for flow visualization
-    \item Extract transverse velocity fluctuations in the cylinder wake from PIV data and identify the dominant frequency through sinusoidal curve fitting
-    \item Compare the experimentally measured shedding frequency with the theoretical prediction
-    \item Visualize the instantaneous velocity fields to identify vortex structures in the wake
+    \item \lipsum[1]
 \end{enumerate}
 
 \section{Methodology} \label{sec:methodology}
 
 \subsection{Experimental Apparatus} \label{sec:methodology/apparatus}
 
-The experiment was conducted in a recirculating water tunnel with a test section of \SI{6}{in} height, \SI{6}{in} width, and \SI{12}{in} length. A circular cylinder of diameter \(D = \SI{0.0127}{\meter}\) (\SI{0.5}{in}) was mounted horizontally at mid-height, spanning the full width of the test section. The flow velocity was controlled by adjusting the pump frequency, with a calibrated relationship \(U_\infty = 0.0185 \times f_{\text{pump}} - 0.0038\), where \(U_\infty\) is in meters per second and \(f_{\text{pump}}\) is the pump frequency in Hertz.
-
-The PIV system (LaVision Inc.) consisted of a double-pulsed Nd:YAG laser (wavelength \SI{532}{\nano\meter}) and a high-resolution CCD camera positioned perpendicular to the laser sheet plane. Cylindrical lenses shaped the laser beam into a thin vertical sheet (\SI{100}{\micro\meter} to \SI{1}{\milli\meter} thick) aligned with the cylinder centerline in the streamwise direction. The laser pulses and camera shutter were synchronized through LaVision software.
+% FIXME: description of experimental apparatus
+\lipsum[1]
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.65\linewidth]{../assets/PIV-diagram.png}
-    \caption{Schematic diagram of the PIV experimental setup showing the double-pulsed Nd:YAG laser, sheet optics, CCD camera, and seeded flow field illuminated by the laser sheet.}
-    \label{fig:procedures/apparatus/piv-diagram}
+    \includegraphics[width=0.65\linewidth]{../assets/ludweig-tube.png}
+    \caption{Schematic diagram of a Ludwieg tube \cite{slaurence2026ludwieg}.}
+    \label{fig:procedures/apparatus/ludweig-tube}
 \end{figure}
 
-The flow was seeded with polyamide particles having mean diameter \(D_p = \SI{20}{\micro\meter}\) and density \(\rho_p = \SI{950}{\kilogram\per\meter\cubed}\). The seeding concentration was optimized to provide 7--10 particles per interrogation window, balancing the need for sufficient particle images with the requirement to avoid particle overlap and maintain spatial resolution.
+% FIXME: description of cone in apparatus
+\lipsum[1]
 
 \subsection{Operating Procedure} \label{sec:methodology/procedure}
 
+% FIXME: description of operating procdeure
 The experimental procedure was as follows:
-
 \begin{enumerate}
-    \item The water tunnel pump was started and adjusted to a frequency of \SI{2.1}{\hertz}, establishing a steady flow with incoming velocity \(U_\infty = \SI{0.0351}{\meter\per\second}\).
-    \item Polyamide seed particles were introduced into the flow and allowed to reach uniform dispersion throughout the test section.
-    \item Laser safety goggles were worn by all personnel, and the laser system was activated under instructor supervision.
-    \item The PIV system acquired 20 image pairs over a total duration of \SI{0.38}{\second}, corresponding to a temporal resolution of approximately \SI{20}{\milli\second} between successive measurements.
-    \item Three different pulse separation times (\(\Delta t\)) were tested to optimize particle displacement for the cross-correlation algorithm.
-    \item Raw image pairs were processed using LaVision DaVis software with an interrogation window size of \(32 \times 32\) pixels and \SI{50}{\percent} overlap (vector spacing of 16 pixels).
-    \item Velocity vector fields were exported as ASCII data files for post-processing and analysis.
+    \item \lipsum[1]
 \end{enumerate}
 
 \section{Results} \label{sec:results}
 
-\subsection{Flow Velocity} \label{sec:results/flow-velocity}
+\subsection{Freestream Flow Conditions} \label{sec:results/freestream-flow-conditions}
 
-The incoming water flow speed \(\bar{U}_{\infty}\) was calculated from the pump frequency using the provided calibration relationship:
-\begin{equation}
-    U_\infty = 0.0185 \times f_{\text{pump}} - 0.0038 = 0.0185 \times 2.1 - 0.0038 = \SI{0.0351}{\meter\per\second}
-\end{equation}
+% FIXME: determination of freestream conditions
+\lipsum[1]
 
-The PIV-measured mean velocity field confirmed this value, with spatial-average velocity components of \(\bar{u} = \SI{0.0245}{\meter\per\second}\) in the streamwise direction and \(\bar{v} = \SI{0.0002}{\meter\per\second}\) in the transverse direction. The streamwise velocity is lower than \(U_\infty\) because the spatial average includes the low-velocity wake region downstream of the cylinder. The near-zero mean transverse velocity indicates symmetric flow, as expected for this Reynolds number regime.
+\subsection{Drag} \label{sec:results/drag}
 
-\subsection{Reynolds Number} \label{sec:results/reynolds-number}
+\subsubsection{Theoretical} \label{sec:results/drag/theoretical}
 
-The Reynolds number for the water flow over the cylinder was calculated using the cylinder diameter as the characteristic length scale and the kinematic viscosity of water at room temperature (\SI{22}{\degreeCelsius}):
-\begin{equation}
-    Re = \frac{U_\infty D}{\nu} = \frac{0.0351 \times 0.0127}{4.048 \times 10^{-7}} \approx 1100
-\end{equation}
+% FIXME: derivation and calculation of theoretical drag coefficient and drag force on the cone
+\lipsum[1]
 
-This Reynolds number falls well within the periodic vortex shedding regime (\(Re \approx 50\text{--}200{,}000\)) and specifically within the range where the Strouhal number is approximately constant at \(St \approx 0.21\). At this Reynolds number, the wake is characterized by a well-defined Kármán vortex street with laminar vortices.
+\subsubsection{Experimental} \label{sec:results/drag/experimental}
 
-\subsection{Velocity Fluctuation} \label{sec:results/velocity-fluctuation}
+% FIXME: determination of drag coefficient and actual drag force on the cone
+\lipsum[1]
 
-To observe the periodic vortex shedding, the transverse (y-direction) velocity component was extracted at a point near the wake centerline at \((x, y) \approx (0.12, 0.30)\) cm (the closest available measurement point to the cylinder center in the PIV grid). Figure~\ref{fig:results/velocity-fluctuation} shows the temporal evolution of the transverse velocity at this location over the \SI{0.38}{\second} measurement period.
+\subsection{Shock Angle} \label{sec:results/shock-angle}
 
+\subsubsection{Theoretical} \label{sec:results/shock-angle/theoretical}
+
+% FIXME: derivation of theoretical shock shape on the top and bottom of the body
+\lipsum[1]
+
+% FIXME: plot of theoretical shock shape on the top and bottom of the body
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.85\linewidth]{../outputs/figures/velocity_fluctuation.png}
-    \caption{Transverse velocity fluctuation at a point near the wake centerline as a function of time.}
-    \label{fig:results/velocity-fluctuation}
+    \includegraphics[width=0.65\linewidth]{../outputs/figures/theoretical-shock.png}
+    \caption{Theoretical Shock Shape across the Free-Flying Cone Body.}
+    \label{fig:results/shock-angle/theoretical/theoretical-shock}
 \end{figure}
-The measured data (blue circles) exhibits periodic oscillations characteristic of vortex shedding. The fitted sinusoid (red curve) yields a dominant frequency of \SI{2.49}{\hertz}.
 
-The v-velocity exhibits clear periodic fluctuations with amplitude on the order of \SI{0.001}{\meter\per\second}, superimposed on a mean value of approximately \SI{0.0009}{\meter\per\second}. These oscillations are the signature of alternating vortices passing through the measurement location.
+\subsubsection{Experimental} \label{sec:results/shock-angle/experimental}
 
-\subsection{Expected Shedding Frequency} \label{sec:results/expected-shedding-frequency}
-
-From the literature, the Strouhal number for circular cylinders at \(Re \approx 1100\) is well-established as \(St = 0.21\) \cite{aroshko1953on}. Using this value, the expected vortex shedding frequency is:
-\begin{equation}
-    f_{\text{expected}} = \frac{St \cdot U_\infty}{D} = \frac{0.21 \times 0.0351}{0.0127} = \SI{0.58}{\hertz}
-\end{equation}
-
-This corresponds to a shedding period of approximately \SI{1.73}{\second}, meaning that the \SI{0.38}{\second} measurement window captures roughly one-fifth (specifically one-4.55th) of a complete shedding cycle if the flow behaves according to the expected Strouhal correlation.
-
-\subsection{Stokes Number} \label{sec:results/stokes-number}
-
-To assess whether the polyamide seed particles faithfully follow the flow, the Stokes number was calculated. The particle response time is:
-\begin{equation}
-    \tau_r = \frac{\rho_p D_p^2}{18\mu} = \frac{950 \times (20 \times 10^{-6})^2}{18 \times 4.04 \times 10^{-4}} = \SI{5.23e-5}{\second}
-\end{equation}
-
-Using the expected shedding frequency as the characteristic flow frequency (\(\tau_f = 1/f_{\text{expected}} = \SI{1.73}{\second}\)), the Stokes number is:
-\begin{equation}
-    St_k = \frac{\tau_r}{\tau_f} = \frac{5.23 \times 10^{-5}}{1.73} = \SI{3.03e-5}{}
-\end{equation}
-
-Since \(St_k \ll 1\), the particles respond almost instantaneously to flow accelerations and accurately represent the fluid motion. This confirms that the PIV measurements provide a faithful representation of the velocity field.
+% FIXME: plot of experimental shock shape on the top and bottom of the body
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\linewidth]{../outputs/figures/experimental-shock.png}
+    \caption{Experimental Shock Shape across the Free-Flying Cone Body.}
+    \label{fig:results/shock-angle/experimental/experimental-shock}
+\end{figure}
 
 \section{Analysis and Discussion} \label{sec:analysis}
 
-\subsection{Measured Shedding Frequency} \label{sec:analysis/measured-shedding-frequency}
+\subsection{Drag} \label{sec:analysis/drag}
 
-A sinusoidal function of the form \(v(t) = A \sin(2\pi f t + \phi) + C\) was fitted to the transverse velocity fluctuation data using nonlinear least-squares regression. The fitted parameters are:
-\begin{align}
-    \text{Amplitude:} \quad & A = \SI{0.00104}{\meter\per\second} \\
-    \text{Frequency:} \quad & f_{\text{measured}} = \SI{2.49}{\hertz} \\
-    \text{Phase:} \quad & \phi = \SI{-2.07}{\radian} \\
-    \text{Offset:} \quad & C = \SI{0.00093}{\meter\per\second}
-\end{align}
+\subsubsection{Comparison with Theory} \label{sec:analysis/drag/comparison-with-theory}
 
-The goodness-of-fit, quantified by \(R^2 = 0.91\), indicates that the sinusoidal model captures approximately 91\% of the variance in the measured velocity signal, demonstrating that periodic oscillations are indeed present in the data.
+% FIXME: comparison of derived drag values with Cp and theoretical CD
+\lipsum[1]
 
-However, the measured frequency of \SI{2.49}{\hertz} is significantly higher than the expected value of \SI{0.58}{\hertz}, representing a discrepancy of 329\%. This large difference warrants careful interpretation.
+\subsubsection{Viscous Component} \label{sec:analysis/drag/viscous}
 
-\subsection{Comparison to Theory} \label{sec:analysis/theory-comparison}
+% FIXME: estimation of viscous drag component on the cone (based on experimental drag coefficient and Cp)
+\lipsum[1]
 
-The measured vortex shedding frequency of \SI{2.49}{\hertz} differs substantially from the expected value of \SI{0.58}{\hertz} based on the Strouhal number correlation. Several factors may contribute to this discrepancy:
+\subsection{Shock Angle} \label{sec:analysis/shock-angle}
 
-\subsubsection{Limited Temporal Resolution}
-The experiment captured only 20 data points over \SI{0.38}{\second}, corresponding to a sampling rate of approximately \SI{53}{\hertz}. While this is sufficient to resolve a \SI{2.49}{\hertz} oscillation (Nyquist criterion: \(f_s > 2f_{\text{signal}}\)), the short total duration means that only \(\sim0.2\) cycles of the expected \SI{0.58}{\hertz} fundamental frequency are captured. This makes it difficult to reliably identify low-frequency components through curve fitting.
+% FIXME: comparison of theoretical shock shape vs experimental shock shape
+\lipsum[1]
 
-\subsubsection{Spatial Measurement Location}
-
-The velocity was extracted at the point nearest to \((0,0)\) in the PIV grid, which was actually located at \((x, y) = (0.12, 0.30)\) cm---offset from the true wake centerline. Different spatial locations in the wake can exhibit different dominant frequencies and phase relationships, particularly if higher-order modes or three-dimensional effects are present.
-
-\subsubsection{Higher Harmonics and Flow Complexity}
-
-The fitted frequency of \SI{2.49}{\hertz} is approximately \(4.3 \times\) the expected fundamental frequency. Vortex street flows can exhibit higher harmonics due to nonlinear interactions, and the observed frequency may represent a superharmonic rather than the fundamental shedding mode. Additionally, at \(Re \approx 1100\), the flow may be transitioning between flow regimes, introducing additional frequency components.
-
-\subsubsection{Three-Dimensional Effects}
-
-While the cylinder spans the tunnel width, end effects and spanwise variations in the vortex shedding can introduce deviations from the idealized two-dimensional Kármán street. These three-dimensional structures may manifest as higher-frequency fluctuations in localized measurements.
-
-Figure~\ref{fig:analysis/velocity-field-evolution} shows the temporal evolution of the velocity field, revealing the complex wake structure downstream of the cylinder.
-
+% FIXME: plot of both (theoretical and experimental) shock shapes on the top and bottom of the body
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\linewidth]{../outputs/figures/velocity_field_evolution.png}
-    \caption{Evolution of the velocity magnitude field at six time instants spanning the \SI{0.38}{\second} measurement period.}
-    \label{fig:analysis/velocity-field-evolution}
+    \includegraphics[width=0.65\linewidth]{../outputs/figures/shock-comparison.png}
+    \caption{Comparison of Theoretical ({\color{red} Red}) and Experimental ({\color{blue} Blue}) Shock Shape across the Free-Flying Cone Body.}
+    \label{fig:analysis/shock-angle/shock-comparison}
 \end{figure}
-Spatial variations in velocity reveal vortical structures in the cylinder wake. The asterisk marks the approximate cylinder center location.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.85\linewidth]{../outputs/figures/velocity_vector_field.png}
-    \caption{Representative instantaneous velocity vector field at \(t = \SI{0.19}{\second}\).}
-    \label{fig:analysis/velocity-vector-field}
-\end{figure}
-Velocity vectors (white arrows) are overlaid on a contour plot of velocity magnitude (color scale). The wake region downstream of the cylinder (marked by the red star) exhibits lower velocities and characteristic vortical motion.
-
-Despite the quantitative discrepancy in shedding frequency, the PIV measurements successfully captured the qualitative features of vortex shedding: periodic velocity fluctuations, asymmetric wake structure, and organized vortical motion. The Stokes number analysis confirms that the particles accurately tracked the flow, ruling out particle lag as a source of error.
 
 \section{Summary and Conclusions} \label{sec:summary}
 
-This experiment demonstrated the application of Particle Imaging Velocimetry to visualize and quantify vortex shedding downstream of a circular cylinder in water flow. Key findings include:
-
-\begin{enumerate}
-    \item The flow conditions corresponded to \(U_\infty = \SI{0.0351}{\meter\per\second}\) and \(Re \approx 1100\), placing the flow well within the periodic vortex shedding regime.
-    \item The Stokes number of \(\SI{3.03e-5}{}\) confirmed that \SI{20}{\micro\meter} polyamide particles faithfully follow the flow dynamics, validating the PIV measurements.
-    \item Based on the established Strouhal number of 0.21, the expected shedding frequency was \SI{0.58}{\hertz}.
-    \item Sinusoidal curve fitting to transverse velocity fluctuations yielded a measured dominant frequency of \SI{2.49}{\hertz}, differing from the expected value by a factor of approximately 4.69.
-    \item The difference factor for both the velocity fluctuation frequency and the shedding cycle duration is roughly equivalent (with a difference between the two differences of 3\%). This could suggest that the reasons for our discrepancies are connected.
-    \item The discrepancy likely arises from limited temporal resolution (only 0.22 fundamental cycles captured), measurement location effects, higher harmonics, and/or three-dimensional flow phenomena.
-    \item Despite the quantitative frequency mismatch, the PIV technique successfully visualized the wake structure and captured periodic velocity fluctuations characteristic of vortex shedding.
-\end{enumerate}
-
-Future experiments could address these limitations by increasing the measurement duration to capture multiple shedding cycles, increasing temporal resolution, and conducting measurements at multiple spanwise locations to assess three-dimensional effects. Spectral analysis (e.g., Fast Fourier Transform) of longer time series would also help identify fundamental and harmonic frequency components more reliably.
-
-Overall, this experiment provided valuable hands-on experience with an important flow diagnostics technique and highlighted both the capabilities and limitations of PIV for unsteady flow measurements. The observed wake structure and periodic fluctuations are consistent with the known physics of cylinder wake flows, even though precise frequency quantification requires longer measurement durations than were available in this laboratory setting.
+% FIXME: summarize and conclude
+\lipsum[1]
 
 \section{References} \label{sec:references}
 
@@ -308,7 +231,7 @@ Similarly, only the code files that are key to the analysis are included below, 
 
 \begin{codeblock}
     \centering
-    \caption{PIV Data Analysis Script.}
+    \caption{Data Analysis Script.}
     \mintinline{bash}{./src/index.py}
     \inputminted{python}{../src/index.py}
     \label{lst:code/index}

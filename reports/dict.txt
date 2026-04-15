@@ -9,16 +9,6 @@ vaisriv
 github
 
 # engineering/aerospace words lol
-Mach
 Ludwieg
 Ludwieg-Tube
-PIV
-PIV-measured
-Velocimetry
-Strouhal
-sinusoid
-superharmonic
-vortical
-streamwise
-DaVis
-LaVision
+freestream

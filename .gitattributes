@@ -1,0 +1,3 @@
+data/*/*.m linguist-detectable=false
+problems.pdf filter=lfs diff=lfs merge=lfs -text
+references/problems.pdf filter=lfs diff=lfs merge=lfs -text

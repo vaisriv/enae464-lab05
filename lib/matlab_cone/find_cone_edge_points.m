@@ -5,8 +5,8 @@ clear all
 global smooth_sigma
 
 % Set read and write directories - PLEASE CHANGE THESE
-im_dir = 'C:\Users\stuartl\OneDrive - University of Maryland\Documents\Teaching\ENAE464\cone\images';
-edge_dir = 'C:\Users\stuartl\OneDrive - University of Maryland\Documents\Teaching\ENAE464\cone\edge_files';
+im_dir = '../../data/mfg_m4_cone/images';
+edge_dir = '../../data/mfg_m4_cone/edges';
 
 % the frame numbers that were saved using the PCC software
 frames = 0:10;
@@ -68,7 +68,7 @@ nmax = 20e3; % maximum number of edge points - can be increased if necessary
 for kk = 1:nframes
   
   % read in image - change depending on which sequence is desired
-    imfile = sprintf('%s\\cone_%03d.tif',im_dir,frames(kk));
+    imfile = fullfile(sprintf('%s',im_dir),sprintf('cone_%03d.tif',frames(kk)));
   I = imread(imfile);
   
   % get image size to scale plot sizes
@@ -163,14 +163,14 @@ for kk = 1:nframes
   pause
 
   % write edge points to file
-  edge_file = sprintf('%s\\frame%d_upper.txt',edge_dir,frames(kk));
+  edge_file = fullfile(sprintf('%s',edge_dir),sprintf('frame%d_upper.txt',frames(kk)));
   fid = fopen(edge_file,'wt');
   A = [xc1; yc1];
   fprintf(fid,'x\ty\n');
   fprintf(fid,'%f\t%f\n',A);
   fclose(fid);
 
-  edge_file = sprintf('%s\\frame%d_lower.txt',edge_dir,frames(kk));
+  edge_file = fullfile(sprintf('%s',edge_dir),sprintf('frame%d_lower.txt',frames(kk)));
   fid = fopen(edge_file,'wt');
   A = [xc2; yc2];
   fprintf(fid,'x\ty\n');

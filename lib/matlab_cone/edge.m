@@ -1,4 +1,4 @@
-function [eout,thresh,gv_45,gh_135] = edge_mod(varargin)
+function [eout,thresh,gv_45,gh_135] = edge(varargin)
 %EDGE Find edges in intensity image.
 %   EDGE takes an intensity or a binary image I as its input, and returns a 
 %   binary image BW of the same size as I, with 1's where the function 
@@ -266,7 +266,7 @@ if strcmp(method,'canny')
                       1,'first') / 64;
     lowThresh = ThresholdRatio*highThresh;
     thresh = [lowThresh highThresh];
-  elseif length(thresh)==1
+  elseif isscalar(thresh)
     highThresh = thresh;
     if thresh>=1
       eid = sprintf('Images:%s:thresholdMustBeLessThanOne', mfilename);
@@ -307,7 +307,7 @@ elseif any(strcmp(method, {'log','marr-hildreth','zerocross'}))
   rr = 2:m-1; cc=2:n-1;
   
   % We don't use image blocks here
-  if isempty(H),
+  if isempty(H)
     fsize = ceil(sigma*3) * 2 + 1;  % choose an odd fsize > 6*sigma;
     op = fspecial('log',fsize,sigma); 
   else 
@@ -343,17 +343,17 @@ elseif any(strcmp(method, {'log','marr-hildreth','zerocross'}))
     % Look for the zero crossings: +0-, -0+ and their transposes
     % The edge lies on the Zero point
     zero = (rz+1) + cz*m;   % Linear index for zero points
-    zz = find(b(zero-1) < 0 & b(zero+1) > 0 ...
-              & abs( b(zero-1)-b(zero+1) ) > 2*thresh);     % [- 0 +]'
+    zz = b(zero-1) < 0 & b(zero+1) > 0 ...
+              & abs( b(zero-1)-b(zero+1) ) > 2*thresh;     % [- 0 +]'
     e(zero(zz)) = 1;
-    zz = find(b(zero-1) > 0 & b(zero+1) < 0 ...
-              & abs( b(zero-1)-b(zero+1) ) > 2*thresh);     % [+ 0 -]'
+    zz = b(zero-1) > 0 & b(zero+1) < 0 ...
+              & abs( b(zero-1)-b(zero+1) ) > 2*thresh;     % [+ 0 -]'
     e(zero(zz)) = 1;
-    zz = find(b(zero-m) < 0 & b(zero+m) > 0 ...
-              & abs( b(zero-m)-b(zero+m) ) > 2*thresh);     % [- 0 +]
+    zz = b(zero-m) < 0 & b(zero+m) > 0 ...
+              & abs( b(zero-m)-b(zero+m) ) > 2*thresh;     % [- 0 +]
     e(zero(zz)) = 1;
-    zz = find(b(zero-m) > 0 & b(zero+m) < 0 ...
-              & abs( b(zero-m)-b(zero+m) ) > 2*thresh);     % [+ 0 -]
+    zz = b(zero-m) > 0 & b(zero+m) < 0 ...
+              & abs( b(zero-m)-b(zero+m) ) > 2*thresh;     % [+ 0 -]
     e(zero(zz)) = 1;
   end
 
@@ -403,7 +403,7 @@ else  % one of the easy methods (roberts,sobel,prewitt)
     
   % determine the threshold; see page 514 of "Digital Imaging Processing" by
   % William K. Pratt
-  if isempty(thresh), % Determine cutoff based on RMS estimate of noise
+  if isempty(thresh) % Determine cutoff based on RMS estimate of noise
                       % Mean of the magnitude squared image is a 
                       % value that's roughly proportional to SNR
     cutoff = scale*mean2(b);
@@ -418,8 +418,8 @@ else  % one of the easy methods (roberts,sobel,prewitt)
   end
   
   % compute the output image
-  for r=1:m,
-    for c=1:n,
+  for r=1:m
+    for c=1:n
         if thinning
           
           % make sure that we don't go beyond the border
@@ -458,7 +458,7 @@ else  % one of the easy methods (roberts,sobel,prewitt)
   
 end
 
-if nargout==0,
+if nargout==0
   imshow(e);
 else
   eout = e;
@@ -513,7 +513,7 @@ end
 % Exclude the exterior pixels
 if ~isempty(idx)
   v = mod(idx,m);
-  extIdx = find(v==1 | v==0 | idx<=m | (idx>(n-1)*m));
+  extIdx = v==1 | v==0 | idx<=m | (idx>(n-1)*m);
   idx(extIdx) = [];
 end
 
@@ -557,11 +557,11 @@ function [I,Method,Thresh,Sigma,Thinning,H,kx,ky] = parse_inputs(varargin)
 %   H      Filter for Zero-crossing detection
 %   kx,ky  From Directionality vector
 
-error(nargchk(1,5,nargin,'struct'));
+narginchk(1,5);
 
 I = varargin{1};
 
-iptcheckinput(I,{'numeric'},{'nonsparse','2d'},mfilename,'I',1);
+validateattributes(I,{'numeric'},{'nonsparse','2d'},mfilename,'I',1);
 
 % Defaults
 Method='sobel';
@@ -644,7 +644,7 @@ switch Method
     if numel(varargin{i})==2 && ~threshSpecified
       Thresh = varargin{i};
       threshSpecified = 1;
-    elseif numel(varargin{i})==1 
+    elseif isscalar(varargin{i}) 
       if ~threshSpecified
         Thresh = varargin{i};
         threshSpecified = 1;
@@ -713,11 +713,11 @@ if Sigma<=0
 end
 
 switch Direction
- case 'both',
+        case 'both'
   kx = K(1); ky = K(2); 
- case 'horizontal',
+ case 'horizontal'
   kx = 0; ky = 1; % Directionality factor
- case 'vertical',
+ case 'vertical'
   kx = 1; ky = 0; % Directionality factor
  otherwise
   eid = sprintf('Images:%s:badDirectionString', mfilename);

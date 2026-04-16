@@ -69,7 +69,7 @@ end
 
 % Bad choice of start direction if no edge found; return error
 if edge_found == 0
-	herr = errordlg('No edge found in specified direction')
+	herr = errordlg('No edge found in specified direction');
     waitfor(herr)
     return
 end

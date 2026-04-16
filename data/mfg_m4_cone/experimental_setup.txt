@@ -1,0 +1,6 @@
+The Mach number for the wind tunnel is 3.79.
+The fill pressure was 0.7 bar.
+The fill temperature was 296 K.
+The camera frame rate was 10 kHz.
+The cone mass was 1.8 g.
+The image conversion factor is 12.6 pixels/mm.

@@ -123,6 +123,7 @@ perSystem.devshell.mkShell {
                 numpy
                 scipy
                 cartopy
+                pillow
             ]
         ))
         uv

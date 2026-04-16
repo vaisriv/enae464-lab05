@@ -106,7 +106,7 @@ Mikołaj Kostrzewa \& Vai Srivastava
 % FIXME: describe theoretical background
 \lipsum[1]
 
-\subsection{Objectives} \label{sec:introduction/objectives}
+\subsection{Experiment Objectives} \label{sec:introduction/objectives}
 
 % FIXME: list experiment objectives
 The specific objectives of this experiment are:
@@ -124,8 +124,8 @@ The specific objectives of this experiment are:
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.65\linewidth]{../assets/ludweig-tube.png}
-    \caption{Schematic diagram of a Ludwieg tube \cite{slaurence2026ludwieg}.}
-    \label{fig:procedures/apparatus/ludweig-tube}
+    \caption{Schematic Diagram of a Ludwieg Tube \cite{slaurence2026ludwieg}.}
+    \label{fig:methodology/apparatus/ludweig-tube}
 \end{figure}
 
 % FIXME: description of cone in apparatus
@@ -141,7 +141,7 @@ The experimental procedure was as follows:
 
 \section{Results} \label{sec:results}
 
-\subsection{Freestream Flow Conditions} \label{sec:results/freestream-flow-conditions}
+\subsection{Freestream Flow Conditions} \label{sec:results/freestream}
 
 % FIXME: determination of freestream conditions
 \lipsum[1]
@@ -160,8 +160,6 @@ The experimental procedure was as follows:
 
 \subsection{Shock Angle} \label{sec:results/shock-angle}
 
-\subsubsection{Theoretical} \label{sec:results/shock-angle/theoretical}
-
 % FIXME: derivation of theoretical shock shape on the top and bottom of the body
 \lipsum[1]
 
@@ -169,46 +167,21 @@ The experimental procedure was as follows:
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.65\linewidth]{../outputs/figures/theoretical-shock.png}
-    \caption{Theoretical Shock Shape across the Free-Flying Cone Body.}
-    \label{fig:results/shock-angle/theoretical/theoretical-shock}
-\end{figure}
-
-\subsubsection{Experimental} \label{sec:results/shock-angle/experimental}
-
-% FIXME: plot of experimental shock shape on the top and bottom of the body
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.65\linewidth]{../outputs/figures/experimental-shock.png}
-    \caption{Experimental Shock Shape across the Free-Flying Cone Body.}
-    \label{fig:results/shock-angle/experimental/experimental-shock}
+    \caption{Theoretical Shock Shape Across the Free-Flying Cone Body.}
+    \label{fig:results/shock-angle/theoretical-shock}
 \end{figure}
 
 \section{Analysis and Discussion} \label{sec:analysis}
 
-\subsection{Drag} \label{sec:analysis/drag}
-
-\subsubsection{Comparison with Theory} \label{sec:analysis/drag/comparison-with-theory}
+\subsection{Comparison Between Theoretical and Experimental Drag Effects} \label{sec:analysis/comparison}
 
 % FIXME: comparison of derived drag values with Cp and theoretical CD
 \lipsum[1]
 
-\subsubsection{Viscous Component} \label{sec:analysis/drag/viscous}
+\subsection{Viscous Component of Drag} \label{sec:analysis/viscous}
 
 % FIXME: estimation of viscous drag component on the cone (based on experimental drag coefficient and Cp)
 \lipsum[1]
-
-\subsection{Shock Angle} \label{sec:analysis/shock-angle}
-
-% FIXME: comparison of theoretical shock shape vs experimental shock shape
-\lipsum[1]
-
-% FIXME: plot of both (theoretical and experimental) shock shapes on the top and bottom of the body
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.65\linewidth]{../outputs/figures/shock-comparison.png}
-    \caption{Comparison of Theoretical ({\color{red} Red}) and Experimental ({\color{blue} Blue}) Shock Shape across the Free-Flying Cone Body.}
-    \label{fig:analysis/shock-angle/shock-comparison}
-\end{figure}
 
 \section{Summary and Conclusions} \label{sec:summary}
 
@@ -234,7 +207,7 @@ Similarly, only the code files that are key to the analysis are included below, 
     \caption{Data Analysis Script.}
     \mintinline{bash}{./src/index.py}
     \inputminted{python}{../src/index.py}
-    \label{lst:code/index}
+    \label{lst:appendices/code/index}
 \end{codeblock}
 
 % render all references

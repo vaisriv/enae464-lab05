@@ -599,7 +599,7 @@ ax.imshow(
     img_array,
     cmap="gray",
     alpha=0.8,
-    extent=[0, img_array.shape[1], img_array.shape[0], 0],
+    extent=(0, img_array.shape[1], img_array.shape[0], 0),
 )
 
 # Plot cone edges

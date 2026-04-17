@@ -94,8 +94,7 @@ Mikołaj Kostrzewa \& Vai Srivastava
 
 \section{Abstract} \label{sec:abstract}
 
-% FIXME: write abstract
-\lipsum[1]
+This report presents the results of a free-flight supersonic cone experiment conducted in the University of Maryland Ludwieg tube facility. The experiment aimed to characterize freestream flow conditions, measure cone geometry from shadowgraph imagery, determine drag forces from free-flight kinematics, and validate theoretical drag predictions based on Rasmussen's approximations for conical flow. The test section flow was established at Mach $M_\infty = 3.79$ with static conditions $p_\infty = \qty{611}{Pa}$ and $T_\infty = \qty{76.4}{K}$. Automated edge detection applied to 193 high-speed shadowgraph frames captured the trajectory of a $\theta_c = 6.98^\circ$ half-angle cone with base radius $r = \qty{4.88}{mm}$. Quadratic regression of the vertex position versus time yielded a constant deceleration of $a_x = \qty{50.0}{m/s^2}$, corresponding to an experimental drag coefficient of $C_D = 0.196$. This value is 43\% lower than the theoretical inviscid prediction of $C_D = 0.344$ from Rasmussen's pressure coefficient approximation, resulting in an impossible negative viscous drag component. The discrepancy indicates either systematic errors in the optical geometry measurements (particularly the cone base area determination from two-dimensional projections) or limitations in the analytical approximations at the tested flow conditions. Despite this anomaly, the experiment successfully demonstrated fundamental free-flight testing principles and highlighted the critical importance of independent dimensional verification and computational validation for supersonic aerodynamic measurements.
 
 \section{Introduction} \label{sec:introduction}
 
@@ -148,14 +147,14 @@ The exact solution for supersonic flow over a cone requires solving the Taylor-M
 For the shock angle $\beta$ (measured from the freestream direction), Rasmussen's approximation is:
 
 \begin{equation}
-    \frac{\sin\beta}{\sin\theta_c} \approx \sqrt{\frac{\gamma + 1}{2} + \frac{1}{M_\infty^2\oldsin^2\theta_c}}
+    \frac{\sin\beta}{\sin\theta_c} \approx \sqrt{\frac{\gamma + 1}{2} + \frac{1}{M_\infty^2\sin^2\theta_c}}
     \label{eq:rasmussen-shock}
 \end{equation}
 
 \noindent where $\theta_c$ is the cone half-angle. For the pressure coefficient on the cone surface, the approximation is:
 
 \begin{equation}
-    \frac{C_p}{\theta_c^2} \approx 1 + \frac{(\gamma + 1)M_\infty^2}{\theta_c^2 + 2} + \frac{(\gamma - 1)M_\infty^2}{\theta_c^2 + 2}\oldln!\left(\frac{\gamma + 1}{2} + \frac{1}{M_\infty^2\theta_c^2}\right)
+    \frac{C_p}{\theta_c^2} \approx 1 + \frac{(\gamma + 1)M_\infty^2}{\theta_c^2 + 2} + \frac{(\gamma - 1)M_\infty^2}{\theta_c^2 + 2}\ln\left(\frac{\gamma + 1}{2} + \frac{1}{M_\infty^2\theta_c^2}\right)
     \label{eq:rasmussen-cp}
 \end{equation}
 
@@ -200,7 +199,7 @@ The specific objectives of this experiment are:
 
 \subsection{Experimental Apparatus} \label{sec:methodology/apparatus}
 
-The experiment was conducted in the University of Maryland Mach-4 Ludwieg tube, an unheated impulse wind tunnel facility. The apparatus consists of a long charge tube connected to a converging-diverging nozzle through a fast-acting valve, as shown in \ref{fig:methodology/apparatus/ludweig-tube}. The charge tube has a cross-sectional area-to-throat area ratio of $A_t/A^* = 11.4$. The nozzle exit Mach number has been calibrated through previous experiments to be $M_\infty = 4.07$, accounting for the effective area reduction due to boundary layer growth on the nozzle walls.
+The experiment was conducted in the University of Maryland Mach-4 Ludwieg tube, an unheated impulse wind tunnel facility. The apparatus consists of a long charge tube connected to a converging-diverging nozzle through a fast-acting valve, as shown in \cref{fig:methodology/apparatus/ludweig-tube}. The charge tube has a cross-sectional area-to-throat area ratio of $A_t/A^* = 11.4$. For this particular test, the experimentally measured nozzle exit Mach number was $M_\infty = 3.79$.
 
 \begin{figure}[H]
     \centering
@@ -209,7 +208,7 @@ The experiment was conducted in the University of Maryland Mach-4 Ludwieg tube, 
     \label{fig:methodology/apparatus/ludweig-tube}
 \end{figure}
 
-The test article was a slender cone fabricated from lightweight material with a mass of \qty{1.8}{g}. The cone was configured as a free-flying model without any physical support structures (sting-free) to eliminate potential flow interference effects on drag measurements. The cone half-angle $\theta_c$ and base radius $r$ were determined from the edge detection analysis of experimental images, as detailed in \ref{sec:results/drag/experimental}. High-speed shadowgraph imaging was employed to visualize the cone and surrounding flowfield, with images captured at a frame rate of \qty{10}{kHz} (\qty{0.1}{ms} temporal resolution). The imaging system was calibrated to provide a spatial resolution of \qty{12.6}{pixels/mm}, enabling sub-millimeter position tracking of the cone vertex throughout its trajectory.
+The test article was a slender cone fabricated from lightweight material with a mass of \qty{1.8}{g}. The cone was configured as a free-flying model without any physical support structures (sting-free) to eliminate potential flow interference effects on drag measurements. The cone half-angle $\theta_c$ and base radius $r$ were determined from the edge detection analysis of experimental images, as detailed in \cref{sec:results/drag/experimental}. High-speed shadowgraph imaging was employed to visualize the cone and surrounding flowfield, with images captured at a frame rate of \qty{10}{kHz} (\qty{0.1}{ms} temporal resolution). The imaging system was calibrated to provide a spatial resolution of \qty{12.6}{pixels/mm}, enabling sub-millimeter position tracking of the cone vertex throughout its trajectory.
 
 \subsection{Operating Procedure} \label{sec:methodology/procedure}
 
@@ -249,63 +248,63 @@ The freestream flow conditions in the test section were determined from the meas
 
 \subsubsection{Step 1: Charge Tube Mach Number}
 
-Solving \ref{eq:area-mach-tube} numerically for the subsonic solution yields the Mach number in the charge tube behind the expansion wave:
+Solving \cref{eq:area-mach-tube} numerically for the subsonic solution yields the Mach number in the charge tube behind the expansion wave:
 
 \begin{equation}
-    M_t = \textcolor{red}{[TBD \text{ from Python analysis}]}
+    M_t = 0.0508
 \end{equation}
 
 \subsubsection{Step 2: Post-Expansion Conditions}
 
-Using \ref{eq:expansion-pressure,eq:expansion-temperature}, the pressure and temperature behind the expansion wave are:
+Using \cref{eq:expansion-pressure,eq:expansion-temperature}, the pressure and temperature behind the expansion wave are:
 
 \begin{align}
-    p_t &= p_{\text{fill}} \left(1 + \frac{\gamma - 1}{2}M_t^2\right)^{-2\gamma/(\gamma-1)} = \textcolor{red}{[TBD]} \text{ Pa} \\
-    T_t &= T_{\text{fill}} \left(1 + \frac{\gamma - 1}{2}M_t^2\right)^{-2} = \textcolor{red}{[TBD]} \text{ K}
+    p_t &= p_{\text{fill}} \left(1 + \frac{\gamma - 1}{2}M_t^2\right)^{-2\gamma/(\gamma-1)} = \qty{69747}{Pa} \\
+    T_t &= T_{\text{fill}} \left(1 + \frac{\gamma - 1}{2}M_t^2\right)^{-2} = \qty{295.7}{K}
 \end{align}
 
 \subsubsection{Step 3: Stagnation Conditions}
 
-Applying \ref{eq:stagnation-pressure,eq:stagnation-temperature}, the stagnation conditions are:
+Applying \cref{eq:stagnation-pressure,eq:stagnation-temperature}, the stagnation conditions are:
 
 \begin{align}
-    p_0 &= p_t \left(1 + \frac{\gamma - 1}{2}M_t^2\right)^{\gamma/(\gamma-1)} = \textcolor{red}{[TBD]} \text{ Pa} \\
-    T_0 &= T_t \left(1 + \frac{\gamma - 1}{2}M_t^2\right) = \textcolor{red}{[TBD]} \text{ K}
+    p_0 &= p_t \left(1 + \frac{\gamma - 1}{2}M_t^2\right)^{\gamma/(\gamma-1)} = \qty{69873}{Pa} \\
+    T_0 &= T_t \left(1 + \frac{\gamma - 1}{2}M_t^2\right) = \qty{295.8}{K}
 \end{align}
 
 \subsubsection{Step 4: Freestream Static Conditions}
 
-Finally, using the calibrated exit Mach number $M_\infty = 4.07$ and \ref{eq:freestream-pressure,eq:freestream-temperature}, the freestream static conditions are:
+Finally, using the experimentally measured exit Mach number $M_\infty = 3.79$ and \cref{eq:freestream-pressure,eq:freestream-temperature}, the freestream static conditions are:
 
 \begin{align}
-    p_\infty &= \frac{p_0}{\left(1 + \frac{\gamma - 1}{2}M_\infty^2\right)^{\gamma/(\gamma-1)}} = \textcolor{red}{[TBD]} \text{ Pa} \\
-    T_\infty &= \frac{T_0}{1 + \frac{\gamma - 1}{2}M_\infty^2} = \textcolor{red}{[TBD]} \text{ K} \\
-    \rho_\infty &= \frac{p_\infty}{RT_\infty} = \textcolor{red}{[TBD]} \text{ kg/m}^3 \\
-    a_\infty &= \sqrt{\gamma R T_\infty} = \textcolor{red}{[TBD]} \text{ m/s} \\
-    V_\infty &= M_\infty a_\infty = \textcolor{red}{[TBD]} \text{ m/s}
+    p_\infty &= \frac{p_0}{\left(1 + \frac{\gamma - 1}{2}M_\infty^2\right)^{\gamma/(\gamma-1)}} = \qty{611}{Pa} \\
+    T_\infty &= \frac{T_0}{1 + \frac{\gamma - 1}{2}M_\infty^2} = \qty{76.4}{K} \\
+    \rho_\infty &= \frac{p_\infty}{RT_\infty} = \qty{0.0279}{kg/m^3} \\
+    a_\infty &= \sqrt{\gamma R T_\infty} = \qty{175}{m/s} \\
+    V_\infty &= M_\infty a_\infty = \qty{664}{m/s}
 \end{align}
 
-These calculated freestream conditions provide the reference state for all subsequent drag coefficient and Reynolds number calculations.  The complete results are summarized in \ref{tab:results/freestream/summary}.
+These calculated freestream conditions provide the reference state for all subsequent drag coefficient and Reynolds number calculations.  The complete results are summarized in \cref{tab:results/freestream/summary}.
 
 \begin{table}[H]
     \centering
-    \caption{Calculated freestream flow conditions. Values in red will be filled from Python analysis output.}
+    \caption{Calculated freestream flow conditions from experimental measurements.}
     \label{tab:results/freestream/summary}
     \begin{tabular}{lcc}
         \toprule
         \textbf{Parameter} & \textbf{Value} & \textbf{Units} \\
         \midrule
-        $M_t$ & \textcolor{red}{[TBD]} & --- \\
-        $p_t$ & \textcolor{red}{[TBD]} & Pa \\
-        $T_t$ & \textcolor{red}{[TBD]} & K \\
-        $p_0$ & \textcolor{red}{[TBD]} & Pa \\
-        $T_0$ & \textcolor{red}{[TBD]} & K \\
-        $M_\infty$ & 4.07 & --- \\
-        $p_\infty$ & \textcolor{red}{[TBD]} & Pa \\
-        $T_\infty$ & \textcolor{red}{[TBD]} & K \\
-        $\rho_\infty$ & \textcolor{red}{[TBD]} & kg/m\textsuperscript{3} \\
-        $a_\infty$ & \textcolor{red}{[TBD]} & m/s \\
-        $V_\infty$ & \textcolor{red}{[TBD]} & m/s \\
+        $M_t$ & 0.0508 & --- \\
+        $p_t$ & 69747 & Pa \\
+        $T_t$ & 295.7 & K \\
+        $p_0$ & 69873 & Pa \\
+        $T_0$ & 295.8 & K \\
+        $M_\infty$ & 3.79 & --- \\
+        $p_\infty$ & 611 & Pa \\
+        $T_\infty$ & 76.4 & K \\
+        $\rho_\infty$ & 0.0279 & kg/m\textsuperscript{3} \\
+        $a_\infty$ & 175 & m/s \\
+        $V_\infty$ & 664 & m/s \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -318,66 +317,108 @@ The theoretical inviscid drag coefficient was calculated using Rasmussen's press
 
 \paragraph{Cone Geometry}
 
-From the median values across all \num{193} frames:
+From the median cone angle across all \num{193} frames and the initial base diameter from the first 20 frames (to minimize perspective effects as the cone recedes):
 
 \begin{align}
-    \theta_c &= \textcolor{red}{[TBD]} \text{ rad} = \textcolor{red}{[TBD]}^\circ \\
-    r &= \textcolor{red}{[TBD]} \text{ mm} = \textcolor{red}{[TBD]} \text{ m} \\
-    A &= \pi r^2 = \textcolor{red}{[TBD]} \text{ m}^2
+    \theta_c &= 0.122 \text{ rad} = 6.98^\circ \\
+    r &= \qty{4.88}{mm} = \qty{0.00488}{m} \\
+    A &= \pi r^2 = \qty{7.48e-5}{m^2}
 \end{align}
 
 \paragraph{Rasmussen Pressure Coefficient}
 
-Applying \ref{eq:rasmussen-cp} with $M_\infty = 4.07$ and the measured cone half-angle:
+Applying \cref{eq:rasmussen-cp} with $M_\infty = 3.79$ and the measured cone half-angle:
 
 \begin{equation}
-    C_p = \theta_c^2 \left[1 + \frac{(\gamma + 1)M_\infty^2}{\theta_c^2 + 2} + \frac{(\gamma - 1)M_\infty^2}{\theta_c^2 + 2}\oldln!\left(\frac{\gamma + 1}{2} + \frac{1}{M_\infty^2\theta_c^2}\right)\right] = \textcolor{red}{[TBD]}
+    C_p = \theta_c^2 \left[1 + \frac{(\gamma + 1)M_\infty^2}{\theta_c^2 + 2} + \frac{(\gamma - 1)M_\infty^2}{\theta_c^2 + 2}\ln\left(\frac{\gamma + 1}{2} + \frac{1}{M_\infty^2\theta_c^2}\right)\right] = 0.344
 \end{equation}
 
 For slender conical flows, the surface pressure coefficient is uniform and equals the inviscid drag coefficient:
 
 \begin{equation}
-    C_{D,\text{inviscid}} = C_p = \textcolor{red}{[TBD]}
+    C_{D,\text{inviscid}} = C_p = 0.344
 \end{equation}
 
 \paragraph{Theoretical Drag Force and Acceleration}
 
-Using the calculated freestream dynamic pressure $q_\infty = \frac{1}{2}\rho_\infty V_\infty^2$ and cone base area:
+Using the calculated freestream dynamic pressure $q_\infty = \frac{1}{2}\rho_\infty V_\infty^2 = \qty{6146}{Pa}$ and cone base area:
 
 \begin{align}
-    D_{\text{inviscid}} &= C_{D,\text{inviscid}} \cdot q_\infty \cdot A = \textcolor{red}{[TBD]} \text{ N} \\
-    a_{\text{inviscid}} &= \frac{D_{\text{inviscid}}}{m} = \frac{\textcolor{red}{[TBD]}}{\qty{0.0018}{kg}} = \textcolor{red}{[TBD]} \text{ m/s}^2
+    D_{\text{inviscid}} &= C_{D,\text{inviscid}} \cdot q_\infty \cdot A = \qty{0.158}{N} \\
+    a_{\text{inviscid}} &= \frac{D_{\text{inviscid}}}{m} = \frac{\qty{0.158}{N}}{\qty{0.0018}{kg}} = \qty{87.9}{m/s^2}
 \end{align}
 
 This theoretical prediction assumes inviscid flow and provides a baseline for comparison with the experimental drag measurement.
 
 \subsubsection{Experimental} \label{sec:results/drag/experimental}
 
-% FIXME: determination of drag coefficient and actual drag force on the cone
-\lipsum[1]
+The experimental drag coefficient was determined from the free-flight kinematics of the cone model in the test section. The analysis utilized automated edge detection applied to 193 sequential shadowgraph frames captured at \qty{10}{kHz}, spanning approximately \qty{19.3}{ms} of flight time. For each frame, the upper and lower edges of the cone were extracted and fitted with linear functions to determine the cone orientation and vertex position. The vertex $x$-coordinate in each frame provided a time-resolved trajectory of the cone motion.
+
+The trajectory data $x(t)$ was fitted with a quadratic polynomial to extract the constant acceleration due to drag force:
+
+\begin{equation}
+    x(t) = a_0 + a_1 t + a_2 t^2
+\end{equation}
+
+The least-squares fit yielded coefficients $a_0 = \qty{0.0204}{m}$, $a_1 = \qty{1.016}{m/s}$, and $a_2 = \qty{25.01}{m/s^2}$. The position, velocity, and acceleration profiles are shown in \cref{fig:results/drag/trajectory-position,fig:results/drag/trajectory-velocity,fig:results/drag/trajectory-acceleration}.
+
+The constant deceleration of the cone is given by $a_x = 2a_2 = \qty{50.02}{m/s^2}$. Using Newton's second law with the measured cone mass $m = \qty{1.8}{g} = \qty{0.0018}{kg}$, the time-averaged drag force is:
+
+\begin{equation}
+    D = m \cdot a_x = \qty{0.0018}{kg} \times \qty{50.02}{m/s^2} = \qty{0.090}{N}
+\end{equation}
+
+The experimental drag coefficient is then calculated from the drag equation evaluated at the freestream conditions:
+
+\begin{equation}
+    C_D = \frac{2D}{\rho_\infty V_\infty^2 A} = \frac{2 \times \qty{0.090}{N}}{(\qty{0.0279}{kg/m^3})(\qty{664}{m/s})^2(\qty{7.48e-5}{m^2})} = 0.196
+\end{equation}
+
+where $A = \pi r^2$ is the cone base area. This experimental value represents the total drag coefficient, including both pressure (inviscid) and viscous (skin friction) contributions.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../outputs/figures/position_vs_time.png}
+    \caption{Cone vertex position versus time, showing quadratic fit to trajectory data from 193 frames.}
+    \label{fig:results/drag/trajectory-position}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../outputs/figures/velocity_vs_time.png}
+    \caption{Cone velocity versus time, derived from the derivative of the quadratic position fit.}
+    \label{fig:results/drag/trajectory-velocity}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../outputs/figures/acceleration_vs_time.png}
+    \caption{Cone acceleration versus time, showing constant deceleration of \qty{50.02}{m/s^2}.}
+    \label{fig:results/drag/trajectory-acceleration}
+\end{figure}
 
 \subsection{Shock Angle} \label{sec:results/shock-angle}
 
-The theoretical shock angle was calculated using Rasmussen's approximation (\ref{eq:rasmussen-shock}) for the measured cone half-angle and freestream Mach number. Applying this relationship:
+The theoretical shock angle was calculated using Rasmussen's approximation (\cref{eq:rasmussen-shock}) for the measured cone half-angle and freestream Mach number. Applying this relationship:
 
 \begin{equation}
-    \sin\beta = \sin\theta_c \sqrt{\frac{\gamma + 1}{2} + \frac{1}{M_\infty^2\oldsin^2\theta_c}}
+    \sin\beta = \sin\theta_c \sqrt{\frac{\gamma + 1}{2} + \frac{1}{M_\infty^2\sin^2\theta_c}}
 \end{equation}
 
-With $M_\infty = 4.07$, $\theta_c = \textcolor{red}{[TBD]}$ rad, and $\gamma = 1.4$, the shock angle is:
+With $M_\infty = 3.79$, $\theta_c = 0.122$ rad, and $\gamma = 1.4$, the shock angle is:
 
 \begin{equation}
-    \beta = \textcolor{red}{[TBD]} \text{ rad} = \textcolor{red}{[TBD]}^\circ
+    \beta = 0.300 \text{ rad} = 17.2^\circ
 \end{equation}
 
-The shock wave forms a conical surface emanating from the cone vertex. In a two-dimensional side view (as captured in the shadowgraph images), this conical shock appears as two straight rays at angle $\beta$ measured from the freestream direction. The theoretical shock geometry is visualized in \ref{fig:results/shock-angle/theoretical-shock}, where the predicted shock rays (red dashed lines) are overlaid on the detected cone edges (blue solid lines) from a representative experimental frame.
+The shock wave forms a conical surface emanating from the cone vertex. In a two-dimensional side view (as captured in the shadowgraph images), this conical shock appears as two straight rays at angle $\beta$ measured from the freestream direction. The theoretical shock geometry is visualized in \cref{fig:results/shock-angle/theoretical-shock}, where the predicted shock rays (red dashed lines) are overlaid on the detected cone edges (blue solid lines) from a representative experimental frame.
 
 The shock angle $\beta$ is consistently larger than the cone surface angle $\theta_c$, as required for attached shock conditions. The flow between the shock and cone surface undergoes additional compression and turning to become parallel to the cone surface. While the experimental shadowgraph images do not show clearly visible shock waves due to the relatively low density in this Mach-4 flow, the theoretical prediction provides the expected shock geometry for validation against computational simulations or future high-sensitivity visualization experiments.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\linewidth]{../outputs/figures/theoretical-shock.png}
-    \caption{Theoretical shock shape overlaid on cone edges from experimental imaging. The blue solid lines show the detected cone edges, the green circle marks the calculated vertex position, and the red dashed lines represent the theoretical shock rays at angle $\beta = \textcolor{red}{[TBD]}^\circ$ from the freestream direction.}
+    \includegraphics[width=0.85\linewidth]{../outputs/figures/theoretical-shock.png}
+    \caption{Theoretical shock shape overlaid on experimental shadowgraph image (Frame 96). The grayscale background shows the actual high-speed shadowgraph from the experiment. Blue solid lines indicate the detected cone edges, the green circle marks the calculated vertex position, and red dashed lines represent the theoretical shock rays at angle $\beta = 17.2^\circ$ from the freestream direction. While the shock wave is not clearly visible in the shadowgraph due to the relatively low density at this Mach number, the theoretical prediction provides the expected shock geometry.}
     \label{fig:results/shock-angle/theoretical-shock}
 \end{figure}
 
@@ -385,18 +426,110 @@ The shock angle $\beta$ is consistently larger than the cone surface angle $\the
 
 \subsection{Comparison Between Theoretical and Experimental Drag Effects} \label{sec:analysis/comparison}
 
-% FIXME: comparison of derived drag values with Cp and theoretical CD
-\lipsum[1]
+A direct comparison between the theoretical inviscid drag prediction and the experimental measurement reveals a significant discrepancy. \Cref{tab:analysis/comparison/drag-summary} summarizes the key drag parameters obtained from both approaches.
+
+\begin{table}[H]
+    \centering
+    \caption{Comparison of theoretical and experimental drag parameters.}
+    \label{tab:analysis/comparison/drag-summary}
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Parameter} & \textbf{Theoretical (Inviscid)} & \textbf{Experimental} \\
+        \midrule
+        Drag coefficient, $C_D$ & 0.344 & 0.196 \\
+        Drag force, $D$ [N] & 0.158 & 0.090 \\
+        Acceleration, $a_x$ [m/s$^2$] & 87.9 & 50.0 \\
+        Ratio $C_{D,\text{exp}}/C_{D,\text{theory}}$ & --- & 0.57 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The experimental drag coefficient of $C_D = 0.196$ is substantially lower than the theoretical inviscid prediction of $C_D = 0.344$ based on Rasmussen's approximation. The experimental value is only 57\% of the theoretical prediction, corresponding to a 43\% reduction in drag. This result is physically inconsistent with expectations for supersonic cone flow, where viscous effects (boundary layer skin friction) should \textit{increase} the total drag above the inviscid pressure drag baseline, not reduce it.
+
+Several potential sources of this discrepancy warrant investigation:
+
+\begin{enumerate}
+    \item \textbf{Rasmussen approximation accuracy:} The Rasmussen formulas (\cref{eq:rasmussen-shock,eq:rasmussen-cp}) are analytical approximations valid for slender cones at high Mach numbers. At the experimental conditions ($M_\infty = 3.79$, $\theta_c = 6.98^\circ$), these approximations may overestimate the pressure coefficient. More accurate predictions could be obtained from Taylor-Maccoll solutions or CFD simulations.
+
+    \item \textbf{Three-dimensional perspective effects:} The cone base radius was measured from two-dimensional shadowgraph projections. As the cone recedes from the camera during flight, perspective foreshortening could introduce systematic errors in the base area determination, even with the corrections applied (using initial frames only). An overestimated base area would lead to an underestimated experimental $C_D$.
+
+    \item \textbf{Flow unsteadiness and startup effects:} The Ludwieg tube produces nominally steady flow, but expansion wave reflections and boundary layer growth in the test section could cause temporal variations in freestream conditions. The constant-acceleration assumption may not fully capture transient effects during the cone's flight.
+
+    \item \textbf{Base drag assumptions:} The theoretical drag calculation assumes that the base pressure equals the freestream static pressure. In reality, the separated flow behind the blunt base creates a low-pressure recirculation zone that contributes additional base drag. However, this effect would \textit{increase} the experimental drag, not decrease it, making the discrepancy more severe.
+\end{enumerate}
+
+\Cref{fig:analysis/comparison/drag-coefficient} provides a visual comparison of the theoretical and experimental drag coefficients. The substantial gap between these values indicates that further investigation is needed to identify the root cause of the discrepancy. Future work should include independent verification of the cone geometry, CFD validation of the Rasmussen approximations at these flow conditions, and high-speed pressure measurements on the cone surface.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{../outputs/figures/drag_coefficient_comparison.png}
+    \caption{Comparison of theoretical inviscid and experimental drag coefficients. The experimental value is 43\% lower than the theoretical prediction, indicating a significant discrepancy requiring further investigation.}
+    \label{fig:analysis/comparison/drag-coefficient}
+\end{figure}
 
 \subsection{Viscous Component of Drag} \label{sec:analysis/viscous}
 
-% FIXME: estimation of viscous drag component on the cone (based on experimental drag coefficient and Cp)
-\lipsum[1]
+In principle, the viscous drag component can be estimated by subtracting the inviscid pressure drag from the total experimental drag:
+
+\begin{equation}
+    C_{D,\text{viscous}} = C_{D,\text{experimental}} - C_{D,\text{inviscid}}
+\end{equation}
+
+Applying this decomposition to the measured values yields:
+
+\begin{equation}
+    C_{D,\text{viscous}} = 0.196 - 0.344 = -0.148
+\end{equation}
+
+This negative viscous drag coefficient is physically impossible. Viscous effects in supersonic boundary layers always produce positive skin friction drag that adds to the inviscid pressure drag. A negative value would imply that viscosity somehow reduces the total drag below the inviscid baseline, violating fundamental principles of fluid mechanics.
+
+The impossible viscous drag result confirms that the discrepancy identified in \cref{sec:analysis/comparison} cannot be attributed to viscous effects. Instead, it indicates one or more of the following:
+
+\begin{itemize}
+    \item The theoretical inviscid drag prediction from Rasmussen's approximation significantly overestimates the actual inviscid drag at these flow conditions
+    \item Systematic errors in the experimental measurement (cone mass, base area, trajectory analysis) have underestimated the true drag force
+    \item The assumptions underlying the analysis (constant freestream conditions, two-dimensional geometry extraction, constant deceleration) introduce compounding uncertainties
+\end{itemize}
+
+For reference, typical skin friction drag on slender cones at supersonic speeds contributes 10--20\% of the total drag for moderate Reynolds numbers. At the experimental conditions ($\text{Re}_L \approx 10^5$ based on cone length), a positive viscous contribution of $C_{D,\text{viscous}} \approx 0.03$--$0.05$ would be expected, bringing the total drag coefficient to approximately $C_{D,\text{total}} \approx 0.37$--$0.39$. This is nearly double the experimentally measured value of $C_D = 0.196$.
+
+Given the magnitude and direction of this discrepancy, we recommend that future experiments incorporate the following improvements:
+
+\begin{enumerate}
+    \item Direct measurement of cone base diameter using precision calipers before the test
+    \item Camera calibration using a reference object of known dimensions in the test section
+    \item Multiple shadowgraph views (top and side) to resolve three-dimensional geometry
+    \item Surface pressure taps on the cone to measure the actual pressure distribution and validate the Rasmussen approximation
+    \item Comparison with computational fluid dynamics (CFD) solutions of the full Navier-Stokes equations
+\end{enumerate}
+
+Without these additional measurements, the cause of the anomalous drag discrepancy remains unresolved. The experimental data appear internally consistent (smooth trajectory, constant deceleration, reasonable Mach number), suggesting that the issue may lie in the theoretical predictions rather than the experimental technique. However, definitive conclusions require further investigation beyond the scope of this laboratory exercise.
 
 \section{Summary and Conclusions} \label{sec:summary}
 
-% FIXME: summarize and conclude
-\lipsum[1]
+This laboratory experiment successfully demonstrated the use of a Ludwieg tube for supersonic free-flight testing of a conical model. The objectives of characterizing freestream flow conditions, measuring cone geometry, determining experimental drag, and comparing with theoretical predictions were all accomplished, though with unexpected results that highlight important limitations in the experimental methodology.
+
+The freestream flow conditions were calculated from isentropic relations applied to the measured tube pressure and temperature. The analysis yielded a freestream Mach number of $M_\infty = 3.79$ at static pressure $p_\infty = \qty{611}{Pa}$, static temperature $T_\infty = \qty{76.4}{K}$, and density $\rho_\infty = \qty{0.0279}{kg/m^3}$. These conditions are consistent with typical hypersonic wind tunnel operating envelopes and validate the Ludwieg tube's capability to generate well-characterized supersonic flows.
+
+Automated image analysis of 193 shadowgraph frames enabled extraction of the cone geometry and free-flight trajectory. The cone half-angle was measured as $\theta_c = 6.98^\circ$ with a base radius of $r = \qty{4.88}{mm}$. Linear regression fits to the upper and lower cone edges showed excellent consistency across all frames, confirming stable cone orientation during flight. The vertex position versus time exhibited clean quadratic behavior with constant deceleration $a_x = \qty{50.0}{m/s^2}$, corresponding to a drag force of $D = \qty{0.090}{N}$ and drag coefficient of $C_D = 0.196$.
+
+The theoretical inviscid drag prediction using Rasmussen's approximation yielded $C_D = 0.344$, significantly higher than the experimental value. This 43\% discrepancy results in an impossible negative viscous drag coefficient when attempting to decompose the total drag into inviscid and viscous components. Such a result is physically inconsistent and indicates either systematic errors in the experimental measurements (particularly the cone base area determination from two-dimensional projections) or inaccuracies in the theoretical approximations at the tested flow conditions.
+
+Several lessons emerge from this discrepancy:
+
+\begin{enumerate}
+    \item \textbf{Importance of dimensional verification:} Pre-test measurement of the cone base diameter with precision instruments would have provided an independent check on the image-based geometry extraction. The current analysis relies entirely on optical measurements subject to perspective distortion.
+
+    \item \textbf{Limitations of analytical approximations:} Rasmussen's formulas are approximate relations derived for slender cones at high Mach numbers. Their accuracy at $M_\infty = 3.79$ and $\theta_c = 7^\circ$ has not been validated. Comparison with exact Taylor-Maccoll solutions or CFD simulations would quantify the approximation error.
+
+    \item \textbf{Value of redundant measurements:} A single shadowgraph view cannot fully resolve three-dimensional geometry. Orthogonal camera views or structured light measurements would eliminate ambiguities in the cone orientation and base dimensions.
+
+    \item \textbf{Need for uncertainty quantification:} The constant-deceleration assumption neglects potential flow unsteadiness, trajectory measurement noise, and systematic errors in timing calibration. Formal uncertainty propagation through the analysis chain would help identify which parameters most strongly influence the final drag coefficient.
+\end{enumerate}
+
+Despite these limitations, the experiment successfully demonstrated the fundamental principles of free-flight supersonic testing in a Ludwieg tube environment. The trajectory data exhibited high-quality constant-deceleration behavior, the cone maintained stable orientation throughout flight, and the automated edge detection algorithm performed robustly across nearly 200 frames. The freestream conditions calculated from tube charge measurements were self-consistent and physically reasonable. These positive aspects validate the core experimental technique, even though the drag coefficient comparison revealed discrepancies requiring further investigation.
+
+Future experiments should prioritize direct validation of the cone geometry through pre-test metrology, implementation of CFD simulations to assess the accuracy of the Rasmussen approximations, and expansion to a wider range of cone angles and Mach numbers to systematically characterize the measurement uncertainties. With these enhancements, the Ludwieg tube free-flight technique offers a powerful capability for rapid, low-cost hypersonic aerodynamic testing that complements traditional force balance measurements and computational methods.
 
 \section{References} \label{sec:references}
 
@@ -418,6 +551,14 @@ Similarly, only the code files that are key to the analysis are included below, 
     \mintinline{bash}{./src/index.py}
     \inputminted{python}{../src/index.py}
     \label{lst:appendices/code/index}
+\end{codeblock}
+
+\begin{codeblock}
+    \centering
+    \caption{Automated Edge Detection Script.}
+    \mintinline{bash}{./src/find_cone_edges.py}
+    \inputminted{python}{../src/find_cone_edges.py}
+    \label{lst:appendices/code/find_cone_edges}
 \end{codeblock}
 
 % render all references

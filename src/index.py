@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
+from PIL import Image
 
 # --- Paths -------------------------------------------------------------------
 
@@ -580,21 +581,45 @@ plt.savefig(OUTPUT_FIGS_DIR / "acceleration_vs_time.png", dpi=300)
 plt.close()
 print("  Saved: acceleration_vs_time.png")
 
-# Figure 4: Theoretical shock shape overlay
+# Figure 4: Theoretical shock shape overlay on experimental image
 # Select a frame near the middle with low angle of attack
 middle_frame = frame_numbers[len(frame_numbers) // 2]
 upper_mid, lower_mid = load_edge_data(middle_frame)
 geom_mid = geom_df[geom_df["frame"] == middle_frame].iloc[0]
 
-fig, ax = plt.subplots(figsize=(12, 8))
+# Load the actual shadowgraph image
+image_path = DATA_DIR / "images" / f"cone_{middle_frame:03d}.tif"
+img = Image.open(image_path)
+img_array = np.array(img)
+
+fig, ax = plt.subplots(figsize=(14, 10))
+
+# Display the shadowgraph image
+ax.imshow(
+    img_array,
+    cmap="gray",
+    alpha=0.8,
+    extent=[0, img_array.shape[1], img_array.shape[0], 0],
+)
 
 # Plot cone edges
-ax.plot(upper_mid["x"], upper_mid["y"], "b-", linewidth=2, label="Upper edge")
-ax.plot(lower_mid["x"], lower_mid["y"], "b-", linewidth=2, label="Lower edge")
+ax.plot(
+    upper_mid["x"], upper_mid["y"], "b-", linewidth=2.5, label="Detected cone edges"
+)
+ax.plot(lower_mid["x"], lower_mid["y"], "b-", linewidth=2.5)
 
 # Plot vertex
 vx, vy = geom_mid["vertex_x"], geom_mid["vertex_y"]
-ax.plot(vx, vy, "go", markersize=10, label="Vertex", zorder=5)
+ax.plot(
+    vx,
+    vy,
+    "go",
+    markersize=12,
+    label="Cone vertex",
+    zorder=5,
+    markeredgecolor="white",
+    markeredgewidth=1.5,
+)
 
 # Plot theoretical shock rays
 x_shock_range = np.linspace(vx, upper_mid["x"].max(), 200)
@@ -609,38 +634,44 @@ ax.plot(
     x_shock_range,
     y_shock_upper,
     "r--",
-    linewidth=2,
+    linewidth=3,
     label=f"Theoretical shock (β = {beta_deg:.2f}°)",
 )
-ax.plot(x_shock_range, y_shock_lower, "r--", linewidth=2)
+ax.plot(x_shock_range, y_shock_lower, "r--", linewidth=3)
 
 # Annotations
 ax.text(
     vx + 50,
-    vy + 50,
+    vy + 60,
     f"θc = {np.degrees(THETA_C):.2f}°",
     fontsize=12,
-    bbox=dict(boxstyle="round", facecolor="white", alpha=0.8),
+    bbox=dict(boxstyle="round", facecolor="yellow", alpha=0.8),
+    fontweight="bold",
 )
 ax.text(
     vx + 100,
-    vy + (x_shock_range[50] - vx) * np.tan(beta_rad) + 10,
+    vy + (x_shock_range[50] - vx) * np.tan(beta_rad) + 15,
     f"β = {beta_deg:.2f}°",
     fontsize=12,
     color="red",
-    bbox=dict(boxstyle="round", facecolor="white", alpha=0.8),
+    bbox=dict(boxstyle="round", facecolor="white", alpha=0.9),
+    fontweight="bold",
 )
 
-ax.set_xlabel("x [pixels]", fontsize=12)
-ax.set_ylabel("y [pixels]", fontsize=12)
-ax.set_title(f"Theoretical Shock Shape (Frame {middle_frame})", fontsize=14)
-ax.legend(fontsize=10)
-ax.axis("equal")
-ax.grid(True, alpha=0.3)
+ax.set_xlabel("x [pixels]", fontsize=13)
+ax.set_ylabel("y [pixels]", fontsize=13)
+ax.set_title(
+    f"Theoretical Shock Overlay on Experimental Shadowgraph (Frame {middle_frame})",
+    fontsize=14,
+    fontweight="bold",
+)
+ax.legend(fontsize=11, loc="upper left", framealpha=0.9)
+ax.set_xlim(0, img_array.shape[1])
+ax.set_ylim(img_array.shape[0], 0)
 plt.tight_layout()
-plt.savefig(OUTPUT_FIGS_DIR / "theoretical-shock.png", dpi=300)
+plt.savefig(OUTPUT_FIGS_DIR / "theoretical-shock.png", dpi=300, bbox_inches="tight")
 plt.close()
-print("  Saved: theoretical-shock.png (updated)")
+print("  Saved: theoretical-shock.png (updated with shadowgraph background)")
 
 # Figure 5: Drag coefficient comparison bar chart
 fig, ax = plt.subplots(figsize=(8, 6))

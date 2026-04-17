@@ -81,9 +81,11 @@ from skimage.filters import threshold_otsu
 # Core edge-extraction
 # ---------------------------------------------------------------------------
 
+
 @dataclass
 class EdgeResult:
     """Container for the detected upper and lower edge points of one frame."""
+
     x_upper: np.ndarray
     y_upper: np.ndarray
     x_lower: np.ndarray
@@ -138,9 +140,7 @@ def extract_cone_edges(
         *not* used -- indices are 0-based as in Python).
     """
     if img.ndim != 2:
-        raise ValueError(
-            f"Expected a 2-D grayscale image, got shape {img.shape}."
-        )
+        raise ValueError(f"Expected a 2-D grayscale image, got shape {img.shape}.")
 
     # 1) Silhouette segmentation ------------------------------------------------
     # Otsu handles a wide range of lighting conditions robustly; the cone is
@@ -231,6 +231,7 @@ def extract_cone_edges(
 # I/O helpers
 # ---------------------------------------------------------------------------
 
+
 def write_edge_file(path: str | os.PathLike, x: np.ndarray, y: np.ndarray) -> None:
     """Write ``x, y`` edge points to a tab-separated file, matching the
     format produced by the MATLAB ``find_cone_edge_points.m`` script.
@@ -292,6 +293,7 @@ def process_image(
 def _save_preview(img: np.ndarray, result: EdgeResult, out_path: Path) -> None:
     """Save a small PNG overlay so users can spot-check edge quality."""
     import matplotlib
+
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
@@ -309,6 +311,7 @@ def _save_preview(img: np.ndarray, result: EdgeResult, out_path: Path) -> None:
 # ---------------------------------------------------------------------------
 # Batch processing
 # ---------------------------------------------------------------------------
+
 
 def _parse_frame_spec(spec: str) -> list[int]:
     """Parse ``'0-10'`` or ``'0,3,5-9'`` into an explicit list of frame numbers."""
@@ -400,8 +403,7 @@ def process_directory(
             n_ok += 1
             if verbose:
                 print(
-                    f"  frame {frame}: upper={res.n_upper} pts, "
-                    f"lower={res.n_lower} pts"
+                    f"  frame {frame}: upper={res.n_upper} pts, lower={res.n_lower} pts"
                 )
         except Exception as e:
             n_fail += 1
@@ -415,39 +417,47 @@ def process_directory(
 # Command-line entry point
 # ---------------------------------------------------------------------------
 
+
 def _build_argparser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         description="Automatic cone edge extraction (Python port of the "
         "MATLAB find_cone_edge_points.m workflow)."
     )
     p.add_argument(
-        "--im-dir", required=True,
+        "--im-dir",
+        required=True,
         help="Directory containing input TIFF images.",
     )
     p.add_argument(
-        "--edge-dir", required=True,
+        "--edge-dir",
+        required=True,
         help="Directory in which to write per-frame edge text files.",
     )
     p.add_argument(
-        "--pattern", default="cone_{:03d}.tif",
+        "--pattern",
+        default="cone_{:03d}.tif",
         help="Filename format string (default: 'cone_{:03d}.tif').",
     )
     p.add_argument(
-        "--frames", default=None,
+        "--frames",
+        default=None,
         help="Frames to process, e.g. '0-192' or '0,2,4-10'. "
-             "If omitted, all matching files are processed.",
+        "If omitted, all matching files are processed.",
     )
     p.add_argument("--canny-sigma", type=float, default=1.0)
     p.add_argument("--canny-low", type=float, default=0.03)
     p.add_argument("--canny-high", type=float, default=0.1)
     p.add_argument(
-        "--save-previews-dir", default=None, metavar="DIR",
+        "--save-previews-dir",
+        default=None,
+        metavar="DIR",
         help="Directory in which to save a PNG overlay per frame for "
-             "spot-checking.  Providing this flag enables preview "
-             "generation; omit it to skip previews entirely.",
+        "spot-checking.  Providing this flag enables preview "
+        "generation; omit it to skip previews entirely.",
     )
-    p.add_argument("--quiet", action="store_true",
-                   help="Suppress per-frame progress output.")
+    p.add_argument(
+        "--quiet", action="store_true", help="Suppress per-frame progress output."
+    )
     return p
 
 

@@ -1,0 +1,13 @@
+Parameter,Value
+Quadratic fit a0 [m],0.02039562693264698
+Quadratic fit a1 [m/s],1.0159714019387267
+Quadratic fit a2 [m/s²],25.00972086664963
+Experimental acceleration [m/s²],50.01944173329926
+Experimental drag force [N],0.09003499511993866
+Experimental drag coefficient,0.19573074894540368
+Rasmussen Cp (inviscid),0.34383561618188385
+Inviscid drag force [N],0.15816236432851996
+Inviscid drag coefficient,0.34383561618188385
+Viscous drag force [N],-0.0681273692085813
+Viscous drag coefficient,-0.14810486723648017
+Viscous fraction [%],-75.66765469118593

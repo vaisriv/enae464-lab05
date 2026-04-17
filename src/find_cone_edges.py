@@ -1,5 +1,5 @@
 """
-find_cone_edge_points.py
+find_cone_edges.py
 ------------------------
 
 Automatic Python port of the MATLAB edge-tracing routines
@@ -43,16 +43,16 @@ Usage
 =====
 From the command line::
 
-    python find_cone_edge_points.py \\
-        --im-dir  ../../data/mfg_m4_cone/images \\
-        --edge-dir ../../data/mfg_m4_cone/edges \\
+    python src/find_cone_edges.py \\
+        --im-dir  ./data/mfg_m4_cone/images \\
+        --edge-dir .data/mfg_m4_cone/edges \\
         --pattern 'cone_{:03d}.tif' \\
         --frames 0-192 \\
-        --save-previews-dir ../../data/mfg_m4_cone/previews
+        --save-previews-dir ./data/mfg_m4_cone/previews
 
 Or, as a library::
 
-    from find_cone_edge_points import process_image, process_directory
+    from find_cone_edges import process_image, process_directory
     process_directory('images/', 'edges/', pattern='cone_{:03d}.tif',
                       preview_dir='previews/')
 

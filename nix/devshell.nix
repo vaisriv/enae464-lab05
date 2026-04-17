@@ -141,6 +141,7 @@ perSystem.devshell.mkShell {
                 scipy
                 cartopy
                 pillow
+                scikit-image
             ]
         ))
         uv

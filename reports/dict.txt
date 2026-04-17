@@ -12,3 +12,11 @@ github
 Ludwieg
 Ludwieg-Tube
 freestream
+inviscid
+shadowgraph
+isentropic
+Taylor-Maccoll
+isentropically
+axisymmetric
+flowfield
+Rasmussen
